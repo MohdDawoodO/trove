@@ -2,10 +2,17 @@
 
 import { randomNumber } from "@/lib/random-number";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import onlineWishlist from "@/public/media/online-wishlist.svg";
+import background from "@/public/media/background.png";
+import { useRouter } from "next/navigation";
 
 export default function HeroSection() {
   const [heading, setHeading] = useState("");
   const [description, setDescription] = useState("");
+
+  const router = useRouter();
 
   useEffect(() => {
     const welcomeMessages = [
@@ -43,9 +50,31 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <div>
-      <h2>{heading}</h2>
-      <p>{description}</p>
+    <div className="flex min-h-[92vh] flex-col items-center justify-center gap-12">
+      <div className="absolute top-0 left-0 -z-1 h-full w-full">
+        <div className="cover to-background from-background/75 absolute top-0 left-0 h-full w-full bg-linear-to-b from-0% to-70% backdrop-blur-xs" />
+        <Image
+          src={background}
+          alt="background"
+          className="h-full w-full object-cover"
+        />
+      </div>
+
+      <Image src={onlineWishlist} alt="wishlish-svg" width={280} height={280} />
+      <div className="flex flex-col items-center gap-6 text-center">
+        <div className="flex max-w-xl flex-col gap-2">
+          <h2 className="text-xl font-medium sm:text-2xl">{heading}</h2>
+          <p className="text-muted-foreground text-base font-light sm:text-lg">
+            {description}
+          </p>
+        </div>
+        <Button
+          className="w-full max-w-xs sm:py-4 sm:text-base"
+          onClick={() => router.push("/auth/login")}
+        >
+          Get Started
+        </Button>
+      </div>
     </div>
   );
 }
