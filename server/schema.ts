@@ -1,4 +1,10 @@
-import { pgTable, text, primaryKey, integer } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  primaryKey,
+  integer,
+  timestamp,
+} from "drizzle-orm/pg-core";
 import type { AdapterAccountType } from "@auth/core/adapters";
 
 export const users = pgTable("user", {
@@ -7,9 +13,9 @@ export const users = pgTable("user", {
     .$defaultFn(() => crypto.randomUUID()),
   name: text("name"),
   email: text("email").unique(),
+  emailVerified: timestamp("emailVerified", { mode: "date" }),
   image: text("image"),
 });
-
 export const accounts = pgTable(
   "account",
   {

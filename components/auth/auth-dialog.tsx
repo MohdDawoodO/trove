@@ -2,10 +2,7 @@
 
 import {
   Dialog,
-  DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -14,6 +11,7 @@ import { PropsWithChildren } from "react";
 import { Button } from "@/components/ui/button";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { signIn } from "next-auth/react";
 
 export default function AuthDialog({
   children,
@@ -42,14 +40,21 @@ export default function AuthDialog({
           <Button
             variant="outline"
             className="w-full gap-3 rounded-full p-5 text-base"
+            onClick={() =>
+              signIn("google", { redirect: true, redirectTo: "/app" })
+            }
           >
             <FcGoogle className="scale-120" /> Sign In with Google
           </Button>
           <Button
             variant="outline"
             className="w-full gap-3 rounded-full p-5 text-base"
+            onClick={() =>
+              signIn("github", { redirect: true, redirectTo: "/app" })
+            }
           >
-            <FaGithub className="scale-120" /> Sign In with Github
+            <FaGithub className="scale-120" />
+            Sign In with Github
           </Button>
         </div>
       </DialogContent>

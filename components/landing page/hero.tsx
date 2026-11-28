@@ -2,18 +2,14 @@
 
 import { randomNumber } from "@/lib/random-number";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import onlineWishlist from "@/public/media/online-wishlist.svg";
 import background from "@/public/media/background.png";
-import { useRouter } from "next/navigation";
 import AuthDialog from "@/components/auth/auth-dialog";
 
 export default function HeroSection() {
   const [heading, setHeading] = useState("");
   const [description, setDescription] = useState("");
-
-  const router = useRouter();
 
   useEffect(() => {
     const welcomeMessages = [

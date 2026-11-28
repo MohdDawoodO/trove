@@ -2,12 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { DownloadIcon, LogInIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
 import AuthDialog from "@/components/auth/auth-dialog";
 
 export default function HomeNav() {
-  const router = useRouter();
-
   return (
     <nav className="flex items-center justify-between p-4 2xl:px-0">
       <h1 className="text-xl font-bold sm:text-2xl">Trove</h1>
