@@ -1,8 +1,13 @@
 import NextAuth from "next-auth";
-import Google from "next-auth/providers/google";
 import Github from "next-auth/providers/github";
+import Google from "next-auth/providers/google";
+import { DrizzleAdapter } from "@auth/drizzle-adapter";
+import { accounts, users } from "@/server/schema";
+import { db } from "@/server/index";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  adapter: DrizzleAdapter(db, { usersTable: users, accountsTable: accounts }),
+  session: { strategy: "jwt" },
   providers: [
     Google({
       allowDangerousEmailAccountLinking: true,
