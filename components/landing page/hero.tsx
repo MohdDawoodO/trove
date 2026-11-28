@@ -7,6 +7,7 @@ import Image from "next/image";
 import onlineWishlist from "@/public/media/online-wishlist.svg";
 import background from "@/public/media/background.png";
 import { useRouter } from "next/navigation";
+import AuthDialog from "@/components/auth/auth-dialog";
 
 export default function HeroSection() {
   const [heading, setHeading] = useState("");
@@ -50,7 +51,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <div className="flex min-h-[92vh] flex-col items-center justify-center gap-12">
+    <div className="flex flex-1 flex-col items-center justify-center gap-12 px-4 2xl:px-0">
       <div className="absolute top-0 left-0 -z-1 h-full w-full">
         <div className="cover to-background from-background/75 absolute top-0 left-0 h-full w-full bg-linear-to-b from-0% to-70% backdrop-blur-xs" />
         <Image
@@ -68,12 +69,9 @@ export default function HeroSection() {
             {description}
           </p>
         </div>
-        <Button
-          className="w-full max-w-xs sm:py-4 sm:text-base"
-          onClick={() => router.push("/auth/login")}
-        >
+        <AuthDialog className="w-full max-w-xs sm:py-4 sm:text-base">
           Get Started
-        </Button>
+        </AuthDialog>
       </div>
     </div>
   );
